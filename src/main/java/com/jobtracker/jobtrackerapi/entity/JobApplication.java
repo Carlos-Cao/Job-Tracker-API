@@ -1,7 +1,10 @@
 package com.jobtracker.jobtrackerapi.entity;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class JobApplication {
 
     private Long id;
