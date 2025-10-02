@@ -6,11 +6,13 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -44,6 +46,13 @@ public class JobTrackerController {
             log.warn("Job Application with ID: {} not found", id);
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @DeleteMapping(path = "/job/application/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteJobApplicationById(@PathVariable Integer id) {
+        jobTrackerServiceImp.deleteJobApplication(id);
+        log.info("Deleting Job Application with ID: {}", id);
     }
 
     @GetMapping(path = "/job/application/all", produces = "application/json")
