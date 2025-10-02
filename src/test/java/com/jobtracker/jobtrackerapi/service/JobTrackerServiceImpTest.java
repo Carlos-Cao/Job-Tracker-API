@@ -46,7 +46,7 @@ class JobTrackerServiceImpTest {
         jobApplication.setDateApplied(LocalDate.now());
         jobApplication.setStatus(JobApplication.ApplicationStatus.APPLIED);
         jobApplication.setJobLink("https://jobs.company.com/123");
-        jobApplication.setNotes("Job Applied");
+        jobApplication.setNotes("Job Applied.");
     }
 
     @AfterEach
