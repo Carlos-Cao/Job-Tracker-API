@@ -1,4 +1,4 @@
-CREATE TABLE job_applications (
+CREATE TABLE job_application (
     id              SERIAL PRIMARY KEY,
     position_title  VARCHAR(255) NOT NULL,
     company_name    VARCHAR(255) NOT NULL,
