@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * REST controller for managing job applications.
+ */
 @RestController
 @Slf4j
 @RequestMapping("/api/${api.version}")
@@ -29,6 +32,11 @@ public class JobTrackerController {
         this.jobTrackerServiceImp = jobTrackerServiceImp;
     }
 
+    /**
+     * Create a new job application.
+     * @param jobApplication the job application to create.
+     * @return the created job application with HTTP status 201 (Created).
+     */
     @PostMapping(path = "/job/application", produces = "application/json")
     public ResponseEntity<JobApplication> postJobApplication(@Valid @RequestBody JobApplication jobApplication) {
         JobApplication saved = jobTrackerServiceImp.addJobApplication(jobApplication);
@@ -36,6 +44,11 @@ public class JobTrackerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
+    /**
+     * Get a job application by its ID.
+     * @param id the ID of the job application.
+     * @return the job application if found, otherwise HTTP status 404 (Not Found).
+     */
     @GetMapping(path = "/job/application/{id}", produces = "application/json")
     public ResponseEntity<JobApplication> getJobApplicationById(@PathVariable Integer id) {
         Optional<JobApplication> application = jobTrackerServiceImp.getJobApplicationById(id);
@@ -48,6 +61,10 @@ public class JobTrackerController {
         }
     }
 
+    /**
+     * Delete a job application by its ID.
+     * @param id the ID of the job application to delete.
+     */
     @DeleteMapping(path = "/job/application/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteJobApplicationById(@PathVariable Integer id) {
@@ -55,6 +72,10 @@ public class JobTrackerController {
         log.info("Deleting Job Application with ID: {}", id);
     }
 
+    /**
+     * Get all job applications.
+     * @return a list of all job applications.
+     */
     @GetMapping(path = "/job/application/all", produces = "application/json")
     public List<JobApplication> getJobApplications() {
         List<JobApplication> applications = jobTrackerServiceImp.getAllJobApplications();
