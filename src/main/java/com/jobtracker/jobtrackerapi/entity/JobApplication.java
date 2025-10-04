@@ -10,6 +10,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+/**
+ * Entity representing a job application.
+ */
 @Entity
 @Data
 public class JobApplication {
